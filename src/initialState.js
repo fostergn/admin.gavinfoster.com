@@ -1,5 +1,5 @@
 const initialState = {
-  view: '',
+  messageInputText: '',
   messages: [],
 };
 

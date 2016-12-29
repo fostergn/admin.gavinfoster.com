@@ -4,7 +4,8 @@ import Admin from './Admin';
 
 const mapStateToProps = (state) => {
   return {
-    message: state.message,
+    messageInputText: state.messageInputText,
+    messages: state.messages,
   };
 };
 

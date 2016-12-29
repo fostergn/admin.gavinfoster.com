@@ -1,16 +1,31 @@
 import fetch from 'isomorphic-fetch'
 import firebaseDB from '../firebaseDB';
 
-export const TOGGLE_SETTING = 'TOGGLE_SETTING';
 export const REQUEST_POSTS = 'REQUEST_POSTS';
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const UPDATE_TEXT = 'UPDATE_TEXT';
 export const SEND_MESSAGE = 'SEND_MESSAGE';
+export const ADD_NEW_MESSAGE = 'ADD_NEW_MESSAGE';
+export const ADD_INITIAL_MESSAGES = 'ADD_INITIAL_MESSAGES';
 
-export function updateText(message) {
+// export function addInitialMessages(messages) {
+//   return {
+//       type: ADD_INITIAL_MESSAGES,
+//       messages
+//   }
+// }
+//
+// export function addNewMessage(message) {
+//   return {
+//       type: ADD_NEW_MESSAGE,
+//       message
+//   }
+// }
+
+export function updateText(messageInputText) {
     return {
         type: UPDATE_TEXT,
-        message
+        messageInputText
     }
 }
 
@@ -20,16 +35,12 @@ export function sendMessage(message) {
       author: 'gavin',
       message,
       createdOn: Date.now(),
-    }, function(){console.log('success')})
-
+    }, function(){
+      console.log('success');
+    })
     return {
-        type: SEND_MESSAGE,
-    }
-}
-
-export function toggleSetting() {
-    return {
-        type: TOGGLE_SETTING,
+        type: UPDATE_TEXT,
+        messageInputText: ''
     }
 }
 
