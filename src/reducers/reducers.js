@@ -33,14 +33,9 @@ const rootReducer = (state = {}, action) => {
               ...state.conversations.slice(conversationPos + 1),
             ]
           });
-        // case ADD_INITIAL_MESSAGES:
-        //   return Object.assign({}, state, {
-        //       messages: action.messages,
-        //   });
         case ADD_NEW_MESSAGE:
           console.log('reducer adding new message: ', action.message);
           return Object.assign({}, state, {
-            // messages: [...state.messages, action.message],
             messageInputText: '',
           });
         default:

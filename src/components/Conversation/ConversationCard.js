@@ -10,7 +10,7 @@ const ConversationCard = ({conversation}) => {
   const lastChatTime = new Date(conversation.lastChat).toString('yyyy-MM-dd');
 
   function navigateToSingle(id){
-    browserHistory.push(`/admin/${id}`);
+    browserHistory.push(`/admin/conversations/${id}`);
   }
 
   return (

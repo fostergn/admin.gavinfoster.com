@@ -9,7 +9,6 @@ class Admin extends Component{
 
     return (
       <div>
-      <p>Welcome to the Admin</p>
       {this.props.children}
       </div>
     );

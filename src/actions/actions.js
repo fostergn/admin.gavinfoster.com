@@ -45,11 +45,12 @@ export function updateText(messageInputText) {
     }
 }
 
-export function sendMessage(message) {
+export function sendMessage(message, author, conversationId) {
     // send message to firebase
     firebaseDB.ref('messages').push({
-      author: 'gavin',
+      author,
       message,
+      conversationId,
       createdOn: Date.now(),
     }, function(){
       console.log('success');
