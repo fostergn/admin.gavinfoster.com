@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 import store from './index';
-import { addNewMessage, addInitialMessages } from './actions/actions';
+import { addConversation, addMessageToConversation } from './actions/actions';
 
 const config = {
   apiKey: "AIzaSyCOj3piZf-HrV-WjDy30WlY_F7rCLqCIAk",
@@ -16,28 +16,22 @@ let firstMessageLoaded = false;
 firebase.initializeApp(config);
 const db = firebase.database();
 
-// Get initial messages
-db.ref('messages').limitToLast(initMessageCount).once('value').then(function(messages) {
-  var initialMessages = [];
-  messages.forEach(function(msgData) {
-    var msg = msgData.val();
-    initialMessages.push(msg);
-  });
-  store.dispatch(addInitialMessages(initialMessages))
-})
+// Get conversations
+db.ref('conversations').on('child_added', function(data) {
+  const conversation = data.val();
+  const conversationId = conversation.conversationId;
+  // dispatch addConversation
+  // get messages from conversations
+  store.dispatch(addConversation(conversation));
+  firebase.database()
+    .ref('messages')
+    .orderByChild('conversationId')
+    .equalTo(conversationId)
+    .on('child_added', function(data) {
+      const message = data.val();
+       store.dispatch(addMessageToConversation(message));
+     });
 
-// Get new message
-db.ref('messages').limitToLast(1).on('child_added', function(data) {
-   var message = {
-     message: data.val().message,
-     author: data.val().author,
-     createdOn: data.val().createdOn,
-   }
-   if(!firstMessageLoaded){
-     firstMessageLoaded = true;
-   } else {
-     store.dispatch(addNewMessage(message));
-   }
 });
 
 export default db;

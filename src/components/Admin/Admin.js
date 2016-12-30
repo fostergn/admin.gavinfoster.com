@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { signOut } from '../../firebaseAuth';
 
-const Admin = ({updateText, sendMessage, messageInputText, messages}) => {
+const Admin = ({updateText, sendMessage, messageInputText, conversations}) => {
 
     function submitForm(e){
       e.preventDefault();
@@ -13,18 +13,22 @@ const Admin = ({updateText, sendMessage, messageInputText, messages}) => {
       signOut();
     }
 
-    const messageList = messages.map(msg => <li>{`${msg.author}: ${msg.message}`}</li>);
+    const messageList = conversations
+      .map(conversation => {
+        return <ul>{conversation.conversationId}{conversation.messages
+        .map(message => <li>{message.message}</li>)}</ul>
+      });
 
     return (
       <div>
       <p>Welcome</p>
       <p>messages:</p>
-      <ul>
         {messageList}
-      </ul>
-      <form onSubmit={(e)=>submitForm(e)}>
-        <input type="text" value={messageInputText} onChange={e => updateText(e.target.value)} />
-      </form>
+      {/*
+        <form onSubmit={(e)=>submitForm(e)}>
+          <input type="text" value={messageInputText} onChange={e => updateText(e.target.value)} />
+        </form>
+        */}
       <br />
       <br />
       <br />

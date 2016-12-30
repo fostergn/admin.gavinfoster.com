@@ -5,7 +5,7 @@ import Admin from './Admin';
 const mapStateToProps = (state) => {
   return {
     messageInputText: state.messageInputText,
-    messages: state.messages,
+    conversations: state.conversations,
   };
 };
 

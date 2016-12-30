@@ -1,6 +1,6 @@
 const initialState = {
   messageInputText: '',
-  messages: [],
+  conversations: [],
 };
 
 export default initialState;
