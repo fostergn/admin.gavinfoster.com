@@ -7,7 +7,6 @@ class Login extends Component {
 
     function login(){
       authenticate(function(data){
-        console.log('success: ', data);
         browserHistory.push('/admin');
       });
     }
