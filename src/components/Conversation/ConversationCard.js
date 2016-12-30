@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 
 const ConversationCard = ({conversation}) => {
-  var messageObject = conversation.messages[0];
+  var messageObject = conversation.messages[conversation.messages.length-1];
   var message = (typeof messageObject !== "undefined") ? messageObject.message : 'loading messages';
   var author = (typeof messageObject !== "undefined") ? messageObject.author : 'loading author';
+  var isConnected = (typeof messageObject !== "undefined") ? conversation.isConnected : '?';
   var conversationId = (typeof messageObject !== "undefined") ? messageObject.conversationId : 'loading';
   const createdOnTime = new Date(conversation.createdOn).toString('yyyy-MM-dd');
   const lastChatTime = new Date(conversation.lastChat).toString('yyyy-MM-dd');
@@ -19,6 +20,7 @@ const ConversationCard = ({conversation}) => {
       <p>last: {lastChatTime}</p>
       <p>message: {message}</p>
       <p>author: {author}</p>
+      <p>status: {isConnected ? 'connected' : 'offline'}</p>
     </div>
   );
 }

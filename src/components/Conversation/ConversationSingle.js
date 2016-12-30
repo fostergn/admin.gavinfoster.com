@@ -29,7 +29,7 @@ const ConversationSingle = ({params, conversations, messageInputText, sendMessag
         {messagesList}
       </ul>
       <form onSubmit={(e) => formSubmit(e)}>
-        <input onChange={(e) => updateMessageInputText(e.target.value)} />
+        <input value={messageInputText} onChange={(e) => updateMessageInputText(e.target.value)} />
       </form>
       <br />
       <br />
