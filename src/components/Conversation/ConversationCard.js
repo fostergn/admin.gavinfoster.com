@@ -7,8 +7,11 @@ const ConversationCard = ({conversation}) => {
   var author = (typeof messageObject !== "undefined") ? messageObject.author : 'loading author';
   var isConnected = (typeof messageObject !== "undefined") ? conversation.isConnected : '?';
   var conversationId = (typeof messageObject !== "undefined") ? messageObject.conversationId : 'loading';
+  var isTyping = (typeof messageObject !== "undefined") ? conversation.isTyping : '?';
   const createdOnTime = new Date(conversation.createdOn).toString('yyyy-MM-dd');
   const lastChatTime = new Date(conversation.lastChat).toString('yyyy-MM-dd');
+
+  console.log('isTyping: ', isTyping);
 
   function navigateToSingle(id){
     browserHistory.push(`/admin/conversations/${id}`);
@@ -21,6 +24,7 @@ const ConversationCard = ({conversation}) => {
       <p>message: {message}</p>
       <p>author: {author}</p>
       <p>status: {isConnected ? 'connected' : 'offline'}</p>
+      <p>{isTyping ? 'eddie is typing...' : ''}</p>
     </div>
   );
 }
