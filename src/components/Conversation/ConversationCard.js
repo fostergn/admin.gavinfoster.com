@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
+import moment from 'moment';
 
 const ConversationCard = ({conversation}) => {
   var messageObject = conversation.messages[conversation.messages.length-1];
@@ -11,16 +12,14 @@ const ConversationCard = ({conversation}) => {
   const createdOnTime = new Date(conversation.createdOn).toString('yyyy-MM-dd');
   const lastChatTime = new Date(conversation.lastChat).toString('yyyy-MM-dd');
 
-  console.log('isTyping: ', isTyping);
-
   function navigateToSingle(id){
     browserHistory.push(`/admin/conversations/${id}`);
   }
 
   return (
     <div onClick={()=>navigateToSingle(conversationId)} style={{width:'40%', display:'inline-block', border: '2px solid black', backgroundColor: 'lightBlue', margin:'6px', color:'black', padding:'4px'}}>
-      <p>created {createdOnTime}</p>
-      <p>last: {lastChatTime}</p>
+      <p>created {moment(createdOnTime).fromNow()}</p>
+      <p>last: {moment(lastChatTime).fromNow()}</p>
       <p>message: {message}</p>
       <p>author: {author}</p>
       <p>status: {isConnected ? 'connected' : 'offline'}</p>

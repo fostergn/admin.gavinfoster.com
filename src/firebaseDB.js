@@ -35,17 +35,19 @@ db.ref('conversations').on('child_added', function(data) {
 });
 
 // On conversation changing
-db.ref('conversations').on('child_changed', function(data, key) {
+db.ref('conversations')
+    .orderByChild('lastChat')
+    .on('child_changed', function(data, key) {
   const isConnected = data.val().isConnected;
   const isTyping = data.val().isTyping;
+  const lastChat = data.val().lastChat;
   const conversationId = data.val().conversationId;
   const newConversation = {
     conversationId,
     isTyping,
     isConnected,
+    lastChat
   };
-
-  console.log('conversation id changed from firebase: ', conversationId);
 
   store.dispatch(updateConversation(newConversation));
 

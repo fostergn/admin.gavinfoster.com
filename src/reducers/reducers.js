@@ -37,15 +37,13 @@ const rootReducer = (state = {}, action) => {
           const updateConversationPos = state.conversations.findIndex(convo => convo.conversationId === updateConversationId );
           const updatePrevConversation = state.conversations[updateConversationPos];
 
-          console.log('reducer convo id: ', updateConversationId);
-          console.log('reducer prev convo id: ', updatePrevConversation);
-
           return Object.assign({}, state, {
             conversations: [
               ...state.conversations.slice(0,updateConversationPos),
               Object.assign({}, updatePrevConversation, {
                 isTyping: action.conversation.isTyping,
-                isConnected: action.conversation.isConnected
+                isConnected: action.conversation.isConnected,
+                lastChat: action.conversation.lastChat,
               }),
               ...state.conversations.slice(updateConversationPos + 1),
             ]
