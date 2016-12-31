@@ -2,24 +2,16 @@ import firebaseDB from '../firebaseDB';
 
 export const UPDATE_TEXT = 'UPDATE_TEXT';
 export const SEND_MESSAGE = 'SEND_MESSAGE';
-export const ADD_NEW_MESSAGE = 'ADD_NEW_MESSAGE';
-export const ADD_INITIAL_MESSAGES = 'ADD_INITIAL_MESSAGES';
 export const ADD_CONVERSATION = 'ADD_CONVERSATION';
+export const UPDATE_CONVERSATION = 'UPDATE_CONVERSATION';
 export const ADD_MESSAGE_TO_CONVERSATION = 'ADD_MESSAGE_TO_CONVERSATION';
 
-// export function addInitialMessages(messages) {
-//   return {
-//       type: ADD_INITIAL_MESSAGES,
-//       messages
-//   }
-// }
-//
-// export function addNewMessage(message) {
-//   return {
-//       type: ADD_NEW_MESSAGE,
-//       message
-//   }
-// }
+export function updateConversation(conversation){
+  return {
+    type: UPDATE_CONVERSATION,
+    conversation: conversation,
+  }
+}
 
 export function addConversation(conversation){
   return {

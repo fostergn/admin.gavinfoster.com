@@ -1,10 +1,9 @@
 import {
     UPDATE_TEXT,
     UPDATE_MESSAGES,
-    ADD_NEW_MESSAGE,
-    ADD_INITIAL_MESSAGES,
     ADD_CONVERSATION,
     ADD_MESSAGE_TO_CONVERSATION,
+    UPDATE_CONVERSATION,
 } from '../actions/actions';
 
 const rootReducer = (state = {}, action) => {
@@ -33,10 +32,23 @@ const rootReducer = (state = {}, action) => {
               ...state.conversations.slice(conversationPos + 1),
             ]
           });
-        case ADD_NEW_MESSAGE:
-          console.log('reducer adding new message: ', action.message);
+        case UPDATE_CONVERSATION:
+          const updateConversationId = action.conversation.conversationId;
+          const updateConversationPos = state.conversations.findIndex(convo => convo.conversationId === updateConversationId );
+          const updatePrevConversation = state.conversations[updateConversationPos];
+
+          console.log('reducer convo id: ', updateConversationId);
+          console.log('reducer prev convo id: ', updatePrevConversation);
+
           return Object.assign({}, state, {
-            messageInputText: '',
+            conversations: [
+              ...state.conversations.slice(0,updateConversationPos),
+              Object.assign({}, updatePrevConversation, {
+                isTyping: action.conversation.isTyping,
+                isConnected: action.conversation.isConnected
+              }),
+              ...state.conversations.slice(updateConversationPos + 1),
+            ]
           });
         default:
             return state;

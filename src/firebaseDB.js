@@ -1,6 +1,6 @@
 import firebase from 'firebase';
 import store from './index';
-import { addConversation, addMessageToConversation } from './actions/actions';
+import { addConversation, addMessageToConversation, updateConversation } from './actions/actions';
 
 const config = {
   apiKey: "AIzaSyCOj3piZf-HrV-WjDy30WlY_F7rCLqCIAk",
@@ -33,5 +33,22 @@ db.ref('conversations').on('child_added', function(data) {
      });
 
 });
+
+// On conversation changing
+db.ref('conversations').on('child_changed', function(data, key) {
+  const isConnected = data.val().isConnected;
+  const isTyping = data.val().isTyping;
+  const conversationId = data.val().conversationId;
+  const newConversation = {
+    conversationId,
+    isTyping,
+    isConnected,
+  };
+
+  console.log('conversation id changed from firebase: ', conversationId);
+
+  store.dispatch(updateConversation(newConversation));
+
+})
 
 export default db;
