@@ -15,7 +15,7 @@ const ConversationSingle = ({params, conversations, messageInputText, sendMessag
 
   function formSubmit(e){
     e.preventDefault();
-    sendMessage(messageInputText, 'gavin', conversationId);
+    sendMessage(messageInputText, 'admin', conversationId);
   }
 
   function updateMessageInputText(text){
