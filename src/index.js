@@ -20,6 +20,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
+        <IndexRedirect to="login" />
         <Route path="login" component={Login} onEnter={isLoggedIn} />
         <Route path="admin" component={Admin} onEnter={requireAuth} >
           <IndexRedirect to="conversations" />

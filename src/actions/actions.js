@@ -37,7 +37,7 @@ export function updateText(messageInputText) {
 export function sendMessage(message, author, conversationId) {
     // send message to firebase
     firebaseDB.ref('messages').push({
-      author,
+      author: 'admin',
       message,
       conversationId,
       createdOn: Date.now(),

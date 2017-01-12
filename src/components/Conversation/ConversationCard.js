@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 import moment from 'moment';
 
 const ConversationCard = ({conversation}) => {
-  var messageObject = conversation.messages[conversation.messages.length-1];
+  var messageObject = (typeof conversation.messages != 'undefined') ? conversation.messages[conversation.messages.length-1] : {};
   var message = (typeof messageObject !== "undefined") ? messageObject.message : 'loading messages';
   var author = (typeof messageObject !== "undefined") ? messageObject.author : 'loading author';
   var isConnected = (typeof messageObject !== "undefined") ? conversation.isConnected : '?';
@@ -17,7 +17,9 @@ const ConversationCard = ({conversation}) => {
   }
 
   return (
-    <div onClick={()=>navigateToSingle(conversationId)} style={{width:'40%', display:'inline-block', border: '2px solid black', backgroundColor: 'lightBlue', margin:'6px', color:'black', padding:'4px'}}>
+    <div
+      className="conversation__card"
+      onClick={()=>navigateToSingle(conversationId)}>
       <p>created {moment(createdOnTime).fromNow()}</p>
       <p>last: {moment(lastChatTime).fromNow()}</p>
       <p>message: {message}</p>

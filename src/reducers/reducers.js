@@ -37,6 +37,8 @@ const rootReducer = (state = {}, action) => {
           const updateConversationPos = state.conversations.findIndex(convo => convo.conversationId === updateConversationId );
           const updatePrevConversation = state.conversations[updateConversationPos];
 
+          if(updateConversationPos === -1){return state;}
+
           return Object.assign({}, state, {
             conversations: [
               ...state.conversations.slice(0,updateConversationPos),

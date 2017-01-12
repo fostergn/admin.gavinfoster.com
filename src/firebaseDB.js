@@ -20,6 +20,11 @@ const db = firebase.database();
 db.ref('conversations').on('child_added', function(data) {
   const conversation = data.val();
   const conversationId = conversation.conversationId;
+
+  // check for blank objects etc.
+  if (typeof conversation.conversationId === 'undefined'){return;}
+  console.log('conversation id: ', conversationId);
+
   // dispatch addConversation
   // get messages from conversations
   store.dispatch(addConversation(conversation));
@@ -31,6 +36,14 @@ db.ref('conversations').on('child_added', function(data) {
       const message = data.val();
        store.dispatch(addMessageToConversation(message));
      });
+
+  var convoRef = db.ref('conversations/'+conversationId);
+  convoRef.update({
+   isAdminConnected: true
+  })
+  convoRef.onDisconnect().update({
+   isAdminConnected: false
+  })
 
 });
 
