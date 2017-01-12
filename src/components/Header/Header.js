@@ -1,26 +1,15 @@
 import React from 'react';
-import classNames from 'classnames';
+import { signOut } from '../../firebaseAuth';
 
 const Header = ({ toggleSetting }) =>  {
 
-  const navClass = classNames({
-    'header__nav': true,
-    'header__nav--hidden': false
-  });
-
-  const navigateHome = (e) => {
-    e.preventDefault();
-    console.log('click');
-  }
-
   return (
-    <div className="header">
-      <div className="header__nav">
-          <ul className={navClass}>
-            <li>Portfolio Chat Admin</li>
-          </ul>
-      </div>
-  </div>
+    <header className="header">
+      <h1 className="header__title">Gavin Foster Admin</h1>
+      <nav className="header__nav">
+        <p className="header__nav-item" onClick={(e) => signOut(e)}>Logout</p>
+      </nav>
+    </header>
   );
 }
 
