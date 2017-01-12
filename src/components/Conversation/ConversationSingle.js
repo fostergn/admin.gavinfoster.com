@@ -9,7 +9,7 @@ const ConversationSingle = ({params, conversations, messageInputText, sendMessag
     const conversation = conversations[conversationPos];
     if(typeof conversation !== "undefined"){
       messagesList = conversation.messages
-          .map((message, index) => <li key={index}>({message.author}) {message.message}</li>);
+          .map((message, index) => <li className={`chat-message chat-message--${message.author}`} key={index}>{message.message}</li>);
     }
   }
 
@@ -23,20 +23,76 @@ const ConversationSingle = ({params, conversations, messageInputText, sendMessag
   }
 
   return (
-    <div>
-      messages:
-      <ul style={{width:'40%', border: '2px solid black', backgroundColor: 'white', margin:'6px', color:'black', padding:'4px'}}>
-        {messagesList}
-      </ul>
-      <form onSubmit={(e) => formSubmit(e)}>
-        <input value={messageInputText} onChange={(e) => updateMessageInputText(e.target.value)} />
-      </form>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <p onClick={() => browserHistory.push('/admin/conversations')}>back to conversations</p>
+    <div className="main--sidebar">
+      <div className="sidebar__container">
+        <ul>
+          <li className="sidebar-conversation__item">
+            <div className="sidebar-conversation__image"></div>
+            <div className="sidebar-conversation__content">
+              <div className="sidebar-conversation__header">
+                <div className="sidebar-conversation__title">Guy From Tulsa</div>
+                <div className="sidebar-conversation__time">2 days</div>
+              </div>
+              <div className="sidebar-conversation__message">Hey have you used Redux bef...</div>
+            </div>
+          </li>
+          <li className="sidebar-conversation__item sidebar-conversation__item--green">
+            <div className="sidebar-conversation__image"></div>
+            <div className="sidebar-conversation__content">
+              <div className="sidebar-conversation__header">
+                <div className="sidebar-conversation__title">Guy From Tulsa</div>
+                <div className="sidebar-conversation__time">2 days</div>
+              </div>
+              <div className="sidebar-conversation__message">Hey have you used Redux bef...</div>
+            </div>
+          </li>
+          <li className="sidebar-conversation__item">
+            <div className="sidebar-conversation__image"></div>
+            <div className="sidebar-conversation__content">
+              <div className="sidebar-conversation__header">
+                <div className="sidebar-conversation__title">Guy From Tulsa</div>
+                <div className="sidebar-conversation__time">2 days</div>
+              </div>
+              <div className="sidebar-conversation__message">Hey have you used Redux bef...</div>
+            </div>
+          </li>
+          <li className="sidebar-conversation__item sidebar-conversation__item--green  sidebar-conversation__item--active">
+            <div className="sidebar-conversation__image"></div>
+            <div className="sidebar-conversation__content">
+              <div className="sidebar-conversation__header">
+                <div className="sidebar-conversation__title">Lil Scrape from Hanoi</div>
+                <div className="sidebar-conversation__time">2 days</div>
+              </div>
+              <div className="sidebar-conversation__message">Hey have you used Redux bef...</div>
+            </div>
+          </li>
+          <li className="sidebar-conversation__item">
+            <div className="sidebar-conversation__image"></div>
+            <div className="sidebar-conversation__content">
+              <div className="sidebar-conversation__header">
+                <div className="sidebar-conversation__title">Guy From Tulsa</div>
+                <div className="sidebar-conversation__time">2 days</div>
+              </div>
+              <div className="sidebar-conversation__message">Hey have you used Redux bef...</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div className="chat-message__container">
+        <header className="chat-message__header">
+          <h2>Lil Scrape from Hanoi</h2>
+        </header>
+        <ul className="chat-message__messages chat-message__messages--wide">
+          {messagesList}
+        </ul>
+        <form className="chat-form">
+          <div className="chat-form__input">
+            <pre><span className="chat-form__span"></span><br /></pre>
+            <div contentEditable="true" id="chat-form__textarea" placeholder="Message Client"></div>
+          </div>
+          <div className="chat-form__submit"><i className="fa fa-paper-plane-o" aria-hidden="true"></i></div>
+        </form>
+      </div>
     </div>
   );
 }

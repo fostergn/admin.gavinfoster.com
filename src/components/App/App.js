@@ -9,7 +9,7 @@ const App = ({children, location}) => {
 
       const mainClass = classNames({
         'main--login': location.pathname.includes('login'),
-        'main--sidebar': location.pathname.includes('admin'),
+        // 'main--sidebar': location.pathname.includes('admin'),
       });
 
       return (

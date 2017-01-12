@@ -510,8 +510,9 @@ background-size:cover;
       -ms-box-sizing: border-box;
           box-sizing: border-box;
   width: 100%;
+	cursor:text;
   /* This height is used when JS is disabled */
-  height: 100px;
+  /*height: 100px;*/
 }
 
 .chat-form__input.active > #chat-form__textarea {
@@ -549,13 +550,13 @@ background-size:cover;
 }
 
 .chat-message__messages--wide {
-  padding-top: 40px;
-  height: calc(100vh - 80px);
-  overflow:auto;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 10%;
-  box-sizing: border-box;
+	padding-top: 40px;
+	height: calc(100vh - 85px);
+	overflow: auto;
+	width: 100%;
+	margin: 0 auto;
+	padding: 40px 10% 0;
+	box-sizing: border-box;
 }
 
 .chat-message__header {

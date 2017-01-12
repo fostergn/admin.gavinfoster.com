@@ -22,6 +22,12 @@ const ConversationCard = ({conversation}) => {
     'conversation__message--typing': false,
   })
 
+  const connectedIconClass = classNames({
+    'fa': true,
+    'fa-user': true,
+    'fa-user-o': !isConnected,
+  })
+
   // return (
   //   <div
   //     className="conversation__card"
@@ -43,12 +49,12 @@ const ConversationCard = ({conversation}) => {
         <div className="conversation__title-container">
           <h2 className="conversation__title">Guy From Tulsa</h2>
           <p className="conversation__detail"><i className="fa fa-clock-o" aria-hidden="true"></i> {moment(lastChatTime).fromNow()}</p>
-          <p className="conversation__detail"><i className="fa fa-user" aria-hidden="true"></i> is active</p>
-          <p className="conversation__edit"><i className="fa fa-pencil-square-o" aria-hidden="true"></i></p>
+          <p className="conversation__detail"><i className={connectedIconClass} aria-hidden="true"></i> {isConnected ? ' is connected' : ' offline'}</p>
+          {/* TODO: edit feature <p className="conversation__edit"><i className="fa fa-pencil-square-o" aria-hidden="true"></i></p>*/}
         </div>
       </div>
       <div className="conversation__message-container">
-        <div className={messageClass}>Hey Have you used Redux before</div>
+        <div className={messageClass}>{message}</div>
       </div>
     </div>
   )
