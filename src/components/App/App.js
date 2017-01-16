@@ -4,7 +4,7 @@ import '../../styles/styles.css';
 import logo from '../../images/logo.svg';
 import Header from '../Header/HeaderContainer';
 
-const App = ({children, location}) => {
+const App = ({children, location, params}) => {
 
       const mainClass = classNames({
         'main--login': location.pathname.includes('login'),
@@ -12,7 +12,7 @@ const App = ({children, location}) => {
 
       return (
         <div>
-          <Header />
+          <Header params={params} />
           <main className={mainClass}>
             {children}
           </main>

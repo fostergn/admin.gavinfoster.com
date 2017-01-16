@@ -10,9 +10,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    toggleSetting: () => {
-      dispatch(toggleSetting());
-    },
+    // toggleSetting: () => {
+    //   dispatch(toggleSetting());
+    // },
   };
 };
 
