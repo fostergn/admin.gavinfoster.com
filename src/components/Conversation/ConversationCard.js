@@ -28,18 +28,8 @@ const ConversationCard = ({conversation}) => {
     'fa-user-o': !isConnected,
   })
 
-  // return (
-  //   <div
-  //     className="conversation__card"
-  //     onClick={()=>navigateToSingle(conversationId)}>
-  //     <p>created {moment(createdOnTime).fromNow()}</p>
-  //     <p>last: {moment(lastChatTime).fromNow()}</p>
-  //     <p>message: {message}</p>
-  //     <p>author: {author}</p>
-  //     <p>status: {isConnected ? 'connected' : 'offline'}</p>
-  //     <p>{isTyping ? 'eddie is typing...' : ''}</p>
-  //   </div>
-  // );
+  let messageContent = message.startsWith('data:') ? <img src={message} /> : message ;
+
   return (
     <div className="conversation__container conversation__container--green"
       onClick={()=>navigateToSingle(conversationId)}
@@ -54,7 +44,7 @@ const ConversationCard = ({conversation}) => {
         </div>
       </div>
       <div className="conversation__message-container">
-        <div className={messageClass}>{message}</div>
+        <div className={messageClass}>{messageContent}</div>
       </div>
     </div>
   )

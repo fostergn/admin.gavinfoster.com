@@ -5,7 +5,7 @@ import ConversationCard from './ConversationCard';
 const ConversationList = ({conversations}) => {
 
   const messageList = conversations
-    .map(conversation => <ConversationCard conversation={conversation}/>)
+    .map((conversation, index) => <ConversationCard key={index} conversation={conversation}/>)
     .sort((a,b) => a.lastChat - b.lastChat)
 
   return (

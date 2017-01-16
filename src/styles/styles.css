@@ -258,6 +258,11 @@ background-size:cover;
   padding-left:12px;
 }
 
+.conversation__message img {
+    max-width: 100px;
+    max-height: 100px;
+}
+
 .conversation__message--client {
 }
 
@@ -596,6 +601,11 @@ background-size:cover;
   text-align: center;
   color: #777;
   line-height: 1.4;
+}
+
+.chat-message__image {
+	max-width:100%;
+	background-color:#fff;
 }
 
 /*
