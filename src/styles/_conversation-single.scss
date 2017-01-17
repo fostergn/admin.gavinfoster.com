@@ -1,0 +1,15 @@
+.single-convo__container {
+  width: calc(100% - 280px);
+  position:relative;
+}
+
+.single-convo__header {
+  height: 40px;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width: calc(100vw - 270px);
+  background-color:#fff;
+}

@@ -1,0 +1,36 @@
+.login {
+  position:relative;
+  color:#000;
+  background-color: #fdfdfd;
+  padding:12px;
+  cursor:pointer;
+}
+
+.login:hover {
+  background-color: #fff;
+}
+
+.login:hover:after {
+  opacity:.8;
+}
+
+.login:after {
+  content:'';
+  width:100%;
+  height:100%;
+  position:absolute;
+  top:0;
+  left:0;
+  opacity:.2;
+  box-shadow: 0px 0px 12px -2px rgba(0,0,0,1);
+  transition: all .3s;
+}
+
+.login__light {
+  font-weight:100;
+}
+
+.blue {color:#4885ed;}
+.yellow {color: #f4c20d;}
+.green {color: #3cba54;}
+.red {color: #db3236;}

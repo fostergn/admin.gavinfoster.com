@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import '../../styles/styles.css';
+// import '../../styles/styles.css';
+import '../../styles/styles.scss';
 import logo from '../../images/logo.svg';
 import Header from '../Header/HeaderContainer';
 

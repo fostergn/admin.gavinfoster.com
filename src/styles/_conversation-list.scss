@@ -1,0 +1,161 @@
+/*
+* Conversation
+*/
+
+.conversation__list {
+  padding:10px;
+  width: calc(100% - 280px);
+	display: flex;
+  flex-flow: row wrap;
+	align-items:flex-start;
+  align-content: flex-start;
+}
+
+.conversation__container {
+  width:calc(50% - 1.25rem);
+  display:inline-block;
+  margin:.5rem;
+	align-self:flex-start;
+	align-content:flex-start;
+	cursor:pointer;
+	position:relative;
+}
+
+.conversation__container:before {
+	content:'';
+	height:100%;
+	width:100%;
+	top:0;
+	left:0;
+	position:absolute;
+	box-shadow: 0px 0px 14px -2px rgba(0,0,0,.8);
+	opacity:1;
+	transition:all .2s;
+}
+
+.conversation__container:hover:before{
+	opacity:.3;
+}
+
+@media screen and (min-width: 1400px) {
+    .conversation__container {
+        width:250px;
+    }
+}
+
+.conversation__header {
+  position:relative;
+  display:flex;
+  align-items:center;
+  background-color: #348AC7;
+  color:#fff;
+  padding:12px;
+  height:70px;
+}
+
+.conversation__header:hover .conversation__edit {
+  display:block;
+}
+
+.conversation__icon {
+  width:60px;
+  height:60px;
+	background-color:#fff;
+}
+
+.conversation__title-container {
+  padding-left:10px;
+}
+
+.conversation__title {
+  padding-bottom: 8px;
+}
+
+.conversation__icon {
+background-image: url(http://static.giantbomb.com/uploads/square_small/16/164924/2602101-2463857318-bert-.jpg);
+background-size: cover;
+width:60px;
+height:60px;
+border-radius: 100%;
+background-position: center;
+background-size:cover;
+}
+
+.conversation__detail {
+  font-size: 10px;
+  font-weight: 100;
+  color: #eee;
+  padding-bottom:2px;
+}
+
+.conversation__edit {
+  display:none;
+  cursor:pointer;
+  font-size: 14px;
+  font-weight: 100;
+  color: #fff;
+  position:absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+.conversation__message-container {
+  padding:2rem;
+  line-height:1.4;
+  font-weight:100;
+  font-size:14px;
+}
+
+.conversation__message {
+  position:relative;
+  padding-left:12px;
+}
+
+.conversation__message img {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.conversation__message--client {
+}
+
+.conversation__message:before {
+  content: '';
+  width: 4px;
+  background-color: #348AC7;
+  display: block;
+  position: absolute;
+  top: 0;
+  top: -10%;
+  left: 0;
+  height: 120%;
+}
+
+@keyframes typing {
+    0% {
+      top: -20%;
+      height:0%;
+      }
+    50% {
+      height: 60%;
+    }
+    100% {
+      top: 110%;
+      height: 0%;
+    }
+}
+
+.conversation__message--typing:after {
+  content: '';
+  width: 4px;
+  background-color: #fff;
+  opacity:1;
+  display: block;
+  position: absolute;
+  top: -20%;
+  height:0%;
+  left: 0;
+  animation-name: typing;
+  animation-iteration-count: infinite;
+  animation-duration: 1s;
+}

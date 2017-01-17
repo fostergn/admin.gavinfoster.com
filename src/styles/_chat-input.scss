@@ -1,0 +1,59 @@
+.chat-form__input {
+  width:75%;
+  margin:10px;
+  position:relative;
+}
+
+[contenteditable=true]:empty:before{
+  content: attr(placeholder);
+  display: block; /* For Firefox */
+  color: #ddd;
+  padding-left:5px;
+}
+
+.chat-form__input > #chat-form__textarea,
+.chat-form__input > pre {
+  padding: 5px;
+  background: transparent;
+  font: 300 13px/16px 'Open Sans', arial, sans-serif;
+  /* Make the text soft-wrap */
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  color:#333;
+  outline:none;
+}
+
+.chat-form__input > #chat-form__textarea {
+  /* The border-box box model is used to allow
+   * padding whilst still keeping the overall width
+   * at exactly that of the containing element.
+   */
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+      -ms-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 100%;
+	cursor:text;
+  /* This height is used when JS is disabled */
+  /*height: 100px;*/
+}
+
+.chat-form__input.active > #chat-form__textarea {
+  /* Hide any scrollbars */
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  /* Remove WebKit user-resize widget */
+  resize: none;
+}
+
+.chat-form__input > pre {
+  display: none;
+}
+.chat-form__input.active > pre {
+  display: block;
+  /* Hide the text; just using it for sizing */
+  visibility: hidden;
+}
