@@ -10,7 +10,7 @@ const ConversationSingle = ({params, conversations, messageInputText, sendMessag
 
   return (
     <div className="main--sidebar">
-      <ConversationSidebar />
+      <ConversationSidebar conversationId={conversationId} />
       <div className="chat-message__container">
         <ConversationSingleHeader />
         <ConversationSingleList params={params} conversations={conversations} />

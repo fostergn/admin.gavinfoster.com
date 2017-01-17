@@ -1,22 +1,30 @@
 import firebaseDB from '../firebaseDB';
 
 export const UPDATE_TEXT = 'UPDATE_TEXT';
+export const UPDATE_SEARCH_TEXT = 'UPDATE_SEARCH_TEXT';
 export const SEND_MESSAGE = 'SEND_MESSAGE';
 export const ADD_CONVERSATION = 'ADD_CONVERSATION';
 export const UPDATE_CONVERSATION = 'UPDATE_CONVERSATION';
 export const ADD_MESSAGE_TO_CONVERSATION = 'ADD_MESSAGE_TO_CONVERSATION';
 
+export function updateSearchText(text){
+  return {
+    type: UPDATE_SEARCH_TEXT,
+    text
+  }
+}
+
 export function updateConversation(conversation){
   return {
     type: UPDATE_CONVERSATION,
-    conversation: conversation,
+    conversation,
   }
 }
 
 export function addConversation(conversation){
   return {
     type: ADD_CONVERSATION,
-    conversation: conversation,
+    conversation,
   }
 }
 

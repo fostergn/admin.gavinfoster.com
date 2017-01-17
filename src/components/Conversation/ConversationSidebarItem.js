@@ -1,36 +1,33 @@
 import React, { Component } from 'react';
+import classNames from 'classnames';
 import { browserHistory } from 'react-router';
+import moment from 'moment';
 
-const ConversationSidebarItem = ({ conversation }) => {
-
-  // <li className="sidebar-conversation__item sidebar-conversation__item--green  sidebar-conversation__item--active">
-  //   <div className="sidebar-conversation__image"></div>
-  //   <div className="sidebar-conversation__content">
-  //     <div className="sidebar-conversation__header">
-  //       <div className="sidebar-conversation__title">Lil Scrape from Hanoi</div>
-  //       <div className="sidebar-conversation__time">2 days</div>
-  //     </div>
-  //     <div className="sidebar-conversation__message">Hey have you used Redux bef...</div>
-  //   </div>
-  // </li>
-
-  console.log('conversation: ', conversation.messages);
-  console.log('last message: ', conversation.messages[conversation.messages.length - 1]);
+const ConversationSidebarItem = ({conversation, paramsConversationId}) => {
 
   let messageText = (typeof conversation.messages[conversation.messages.length - 1] !== 'undefined') ? conversation.messages[conversation.messages.length - 1].message : 'Loading';
+  let lastChatTime = new Date(conversation.lastChat).toString('yyyy-MM-dd');
+  lastChatTime = moment(lastChatTime).fromNow();
   messageText = messageText.startsWith('data:') ? 'Sent an image' : messageText;
+  messageText = messageText.length > 40 ? `${messageText.slice(0, 37)}...` : messageText
 
   function navigateToSingle(id){
     browserHistory.push(`/admin/conversations/${id}`);
   }
 
+  const conversationClass = classNames({
+    "sidebar-conversation__item": true,
+    [`sidebar-conversation__item--${conversation.identity}`]: true,
+    "sidebar-conversation__item--active": conversation.conversationId === paramsConversationId,
+  })
+
   return (
-      <li className="sidebar-conversation__item" onClick={() => navigateToSingle(conversation.conversationId)}>
+      <li className={conversationClass} onClick={() => navigateToSingle(conversation.conversationId)}>
         <div className="sidebar-conversation__image"></div>
         <div className="sidebar-conversation__content">
           <div className="sidebar-conversation__header">
-            <div className="sidebar-conversation__title">Guy From Tulsa</div>
-            <div className="sidebar-conversation__time">2 days</div>
+            <div className="sidebar-conversation__title">{conversation.name}</div>
+            <div className="sidebar-conversation__time">{lastChatTime}</div>
           </div>
           <div className="sidebar-conversation__message">{messageText}</div>
         </div>

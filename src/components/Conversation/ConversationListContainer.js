@@ -1,20 +1,20 @@
 import { connect } from 'react-redux';
-import { updateText, sendMessage } from '../../actions/actions';
+import { updateSearchText, sendMessage } from '../../actions/actions';
 import ConversationList from './ConversationList';
 
 const mapStateToProps = (state) => {
   return {
-    messageInputText: state.messageInputText,
     conversations: state.conversations,
+    searchText: state.searchText,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateText: (msg) => {
-      dispatch(updateText(msg));
+    updateSearchText: text => {
+      dispatch(updateSearchText(text));
     },
-    sendMessage: (msg) => {
+    sendMessage: msg => {
       dispatch(sendMessage(msg));
     },
   };

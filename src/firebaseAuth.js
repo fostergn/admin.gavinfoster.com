@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import { browserHistory } from 'react-router'
+import { browserHistory } from 'react-router';
 
 const provider = new firebase.auth.GoogleAuthProvider();
 

@@ -1,5 +1,6 @@
 import {
     UPDATE_TEXT,
+    UPDATE_SEARCH_TEXT,
     UPDATE_MESSAGES,
     ADD_CONVERSATION,
     ADD_MESSAGE_TO_CONVERSATION,
@@ -12,6 +13,10 @@ const rootReducer = (state = {}, action) => {
         case UPDATE_TEXT:
           return Object.assign({}, state, {
               messageInputText: action.messageInputText,
+          });
+        case UPDATE_SEARCH_TEXT:
+          return Object.assign({}, state, {
+              searchText: action.text,
           });
         case ADD_CONVERSATION:
           action.conversation.messages = [];

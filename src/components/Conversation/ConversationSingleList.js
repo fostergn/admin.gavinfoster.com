@@ -5,7 +5,6 @@ class ConversationSingleList extends Component {
     super(props);
   }
 
-
   componentDidMount(){
     this.updateScrollPosition();
   }
@@ -39,9 +38,9 @@ class ConversationSingleList extends Component {
         messagesList = conversation.messages
             .map((msg, index) => {
               if (msg.message.startsWith('data:')){
-                return (<li key={index} className={`chat-message chat-message--image chat-message--${msg.author}`}><img className="chat-message__image" onDoubleClick={() => this.imageNewWindow(msg.message)} src={msg.message} /></li>)
+                return (<li key={index} className={`chat-message chat-message--image chat-message--${msg.author} chat-message--${conversation.identity}`}><img className="chat-message__image" onDoubleClick={() => this.imageNewWindow(msg.message)} src={msg.message} /></li>)
               }
-              return (<li key={index} className={`chat-message chat-message--${msg.author}`}>{msg.message}</li>)
+              return (<li key={index} className={`chat-message chat-message--${msg.author} chat-message--${conversation.identity}`}>{msg.message}</li>)
             });
       }
     }

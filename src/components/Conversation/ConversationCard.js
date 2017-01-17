@@ -10,6 +10,8 @@ const ConversationCard = ({conversation}) => {
   var isConnected = (typeof messageObject !== "undefined") ? conversation.isConnected : '?';
   var conversationId = (typeof messageObject !== "undefined") ? messageObject.conversationId : 'loading';
   var isTyping = (typeof messageObject !== "undefined") ? conversation.isTyping : '?';
+  var name = (typeof messageObject !== "undefined") ? conversation.name : '?';
+
   const createdOnTime = new Date(conversation.createdOn).toString('yyyy-MM-dd');
   const lastChatTime = new Date(conversation.lastChat).toString('yyyy-MM-dd');
 
@@ -29,15 +31,16 @@ const ConversationCard = ({conversation}) => {
   })
 
   let messageContent = message.startsWith('data:') ? <img src={message} /> : message ;
+  messageContent = messageContent.length > 40 ? `${messageContent.slice(0, 37)}...` : messageContent
 
   return (
-    <div className="conversation__container conversation__container--green"
+    <div className={`conversation__container conversation__container--${conversation.identity}`}
       onClick={()=>navigateToSingle(conversationId)}
       >
       <div className="conversation__header">
         <div className="conversation__icon"></div>
         <div className="conversation__title-container">
-          <h2 className="conversation__title">Guy From Tulsa</h2>
+          <h2 className="conversation__title">{name}</h2>
           <p className="conversation__detail"><i className="fa fa-clock-o" aria-hidden="true"></i> {moment(lastChatTime).fromNow()}</p>
           <p className="conversation__detail"><i className={connectedIconClass} aria-hidden="true"></i> {isConnected ? ' is connected' : ' offline'}</p>
           {/* TODO: edit feature <p className="conversation__edit"><i className="fa fa-pencil-square-o" aria-hidden="true"></i></p>*/}
