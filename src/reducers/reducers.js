@@ -51,6 +51,7 @@ const rootReducer = (state = {}, action) => {
                 isTyping: action.conversation.isTyping,
                 isConnected: action.conversation.isConnected,
                 lastChat: action.conversation.lastChat,
+                name: action.conversation.name,
               }),
               ...state.conversations.slice(updateConversationPos + 1),
             ]

@@ -5,10 +5,9 @@ import ConversationCard from './ConversationCard';
 const ConversationList = ({conversations, searchText, updateSearchText}) => {
 
   function filterName(conversation){
+    if(typeof conversation.name === 'undefined'){return true;}
     return conversation.name.toLowerCase().includes(searchText.toLowerCase());
   }
-
-  // const hasMessages = checkNested(conversations, 0, 'messages', 0, 'message');
 
   function handleInputChange(input){
     updateSearchText(input);

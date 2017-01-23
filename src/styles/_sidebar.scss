@@ -12,6 +12,14 @@
   color:#000;
   padding:12px 5px 12px 12px;
   transition:all .2s;
+  &:hover {
+    &:before {
+      width:100%;
+    }
+    & .sidebar-conversation__content, & .sidebar-conversation__time, & .sidebar-conversation__message {
+      color:#fff;
+    }
+  }
 }
 
 .sidebar-conversation__item--active {
@@ -36,6 +44,11 @@
   left: 0;
 	transition: all .2s;
 }
+
+// .sidebar-conversation__item:hover:before {
+//   width:100%;
+//   color:#fff;
+// }
 
 .sidebar-conversation__item--active:before {
 	width: 100%;

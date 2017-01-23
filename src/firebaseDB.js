@@ -1,5 +1,7 @@
 import firebase from 'firebase';
 import store from './index';
+import { pushNotification } from './pushNotifications';
+import icon from './images/icons/count.png';
 import { addConversation, addMessageToConversation, updateConversation } from './actions/actions';
 
 const config = {
@@ -12,6 +14,7 @@ const config = {
 
 let initMessageCount = 10;
 let firstMessageLoaded = false;
+let initialMessagesLoaded = false;
 
 firebase.initializeApp(config);
 const db = firebase.database();
@@ -23,7 +26,6 @@ db.ref('conversations').on('child_added', function(data) {
 
   // check for blank objects etc.
   if (typeof conversation.conversationId === 'undefined'){return;}
-  console.log('conversation id: ', conversationId);
 
   // dispatch addConversation
   // get messages from conversations
@@ -35,6 +37,9 @@ db.ref('conversations').on('child_added', function(data) {
     .on('child_added', function(data) {
       const message = data.val();
        store.dispatch(addMessageToConversation(message));
+       if(initialMessagesLoaded && message.author === 'client'){
+         pushNotification(message.message.substr(0, 20), message.message, icon);
+       }
      });
 
   var convoRef = db.ref('conversations/'+conversationId);
@@ -54,16 +59,23 @@ db.ref('conversations')
   const isConnected = data.val().isConnected;
   const isTyping = data.val().isTyping;
   const lastChat = data.val().lastChat;
+  const name = data.val().name;
   const conversationId = data.val().conversationId;
   const newConversation = {
     conversationId,
     isTyping,
     isConnected,
-    lastChat
+    lastChat,
+    name,
   };
 
   store.dispatch(updateConversation(newConversation));
 
 })
+
+// Hack: initial messages loaded after 3 seconds
+window.setTimeout(function(){
+  initialMessagesLoaded = true;
+}, 3000)
 
 export default db;
