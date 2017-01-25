@@ -8,3 +8,6 @@ Run npm install & npm start
 `npm install`
 
 `npm run start`
+
+### Deployment
+`npm run deploy`
