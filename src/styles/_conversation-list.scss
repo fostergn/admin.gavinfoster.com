@@ -7,16 +7,14 @@
   width: calc(100% - 280px);
 	display: flex;
   flex-flow: row wrap;
-	align-items:flex-start;
-  align-content: flex-start;
+  overflow: scroll;
+  height: calc(100vh - 60px);
 }
 
 .conversation__container {
   width:calc(50% - 1.25rem);
   display:inline-block;
   margin:.5rem;
-	align-self:flex-start;
-	align-content:flex-start;
 	cursor:pointer;
 	position:relative;
 }

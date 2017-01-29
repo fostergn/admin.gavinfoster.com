@@ -9,7 +9,7 @@ const ConversationCard = ({conversation}) => {
   var author = (typeof messageObject !== "undefined") ? messageObject.author : 'loading author';
   var isConnected = (typeof messageObject !== "undefined") ? conversation.isConnected : '?';
   var conversationId = (typeof messageObject !== "undefined") ? messageObject.conversationId : 'loading';
-  var isTyping = (typeof messageObject !== "undefined") ? conversation.isTyping : '?';
+  var isClientTyping = (typeof messageObject !== "undefined") ? conversation.isClientTyping : false;
   var name = (typeof messageObject !== "undefined") ? conversation.name : '?';
 
   const createdOnTime = new Date(conversation.createdOn).toString('yyyy-MM-dd');
@@ -21,7 +21,7 @@ const ConversationCard = ({conversation}) => {
 
   const messageClass = classNames({
     'conversation__message': true,
-    'conversation__message--typing': false,
+    'conversation__message--typing': isClientTyping,
   })
 
   const connectedIconClass = classNames({

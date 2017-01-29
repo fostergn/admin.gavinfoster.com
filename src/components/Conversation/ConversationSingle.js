@@ -5,7 +5,7 @@ import ConversationSingleForm from './ConversationSingleForm';
 import ConversationSingleHeader from './ConversationSingleHeader';
 import ConversationSingleList from './ConversationSingleList';
 
-const ConversationSingle = ({params, conversations, messageInputText, sendMessage, updateText}) => {
+const ConversationSingle = ({params, conversations, messageInputText, sendMessage, updateText, updateIsTyping}) => {
   const conversationId = params.id;
 
   return (
@@ -14,7 +14,7 @@ const ConversationSingle = ({params, conversations, messageInputText, sendMessag
       <div className="chat-message__container">
         <ConversationSingleHeader />
         <ConversationSingleList params={params} conversations={conversations} />
-        <ConversationSingleForm sendMessage={sendMessage} conversationId={conversationId} />
+        <ConversationSingleForm sendMessage={sendMessage} conversationId={conversationId} updateIsTyping={updateIsTyping} />
       </div>
     </div>
   );

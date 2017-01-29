@@ -48,10 +48,10 @@ const rootReducer = (state = {}, action) => {
             conversations: [
               ...state.conversations.slice(0,updateConversationPos),
               Object.assign({}, updatePrevConversation, {
-                isTyping: action.conversation.isTyping,
                 isConnected: action.conversation.isConnected,
                 lastChat: action.conversation.lastChat,
                 name: action.conversation.name,
+                clientIsTyping: action.conversation.clientIsTyping,
               }),
               ...state.conversations.slice(updateConversationPos + 1),
             ]

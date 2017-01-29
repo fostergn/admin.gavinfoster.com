@@ -13,10 +13,12 @@ const ConversationList = ({conversations, searchText, updateSearchText}) => {
     updateSearchText(input);
   }
 
-  const messageList = conversations
+  let messageList = conversations
     .filter(filterName)
     .map((conversation, index) => <ConversationCard key={index} conversation={conversation}/>)
     .sort((a,b) => a.lastChat - b.lastChat)
+  if(messageList.length === 0 && searchText.length > 0){messageList = <p>No conversations match your search</p>}
+  else if(messageList.length === 0 && searchText.length === 0){messageList = <p>Loading conversations...</p>}
 
   return (
     <div className="main--sidebar">

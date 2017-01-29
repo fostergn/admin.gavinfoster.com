@@ -57,17 +57,19 @@ db.ref('conversations')
     .orderByChild('lastChat')
     .on('child_changed', function(data, key) {
   const isConnected = data.val().isConnected;
-  const isTyping = data.val().isTyping;
   const lastChat = data.val().lastChat;
+  const clientIsTyping = data.val().clientIsTyping;
   const name = data.val().name;
   const conversationId = data.val().conversationId;
   const newConversation = {
     conversationId,
-    isTyping,
     isConnected,
     lastChat,
     name,
+    clientIsTyping,
   };
+
+  console.log('child is changing: ', newConversation);
 
   store.dispatch(updateConversation(newConversation));
 
