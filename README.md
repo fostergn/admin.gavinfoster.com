@@ -10,4 +10,4 @@ Run npm install & npm start
 `npm run start`
 
 ### Deployment
-`npm run deploy`
+`rsync -av build/ gavin@45.55.67.227:/var/www/admin.gavinfoster.com/html`
