@@ -31,10 +31,14 @@ class ConversationSingleList extends Component {
     let {params, conversations} = this.props;
     const conversationId = params.id;
     let messagesList = '';
+    let conversation = {};
+    let conversationName = '';
+
     if(typeof conversations !== "undefined"){
       const conversationPos = conversations.findIndex(convo => convo.conversationId === conversationId );
-      const conversation = conversations[conversationPos];
+      conversation = conversations[conversationPos];
       if(typeof conversation !== "undefined"){
+        conversationName = conversation.name;
         messagesList = conversation.messages
             .map((msg, index) => {
               if (msg.message.startsWith('data:')){
@@ -45,10 +49,18 @@ class ConversationSingleList extends Component {
       }
     }
 
+    console.log('________\n\n\n\n', conversation);
+    console.log('\n\n\n\n__________');
+
     return (
-      <ul className="chat-message__messages chat-message__messages--wide">
-        {messagesList}
-      </ul>
+      <div>
+        <header className="chat-message__header">
+          <h2>{ conversationName }</h2>
+        </header>
+        <ul className="chat-message__messages chat-message__messages--wide">
+          {messagesList}
+        </ul>
+      </div>
     );
   }
 }

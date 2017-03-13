@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 
 const ConversationSingleForm = ({sendMessage, conversationId, updateIsTyping}) => {
+  let isTypingTimeout;
+  
   function handleTyping(e) {
       const keyCode = e.keyCode;
       if (keyCode == 13 && e.shiftKey) {
@@ -21,8 +23,6 @@ const ConversationSingleForm = ({sendMessage, conversationId, updateIsTyping}) =
   }
 
   function handleKeyPress() {
-    var isTypingTimeout;
-    var isTyping = false;
     var debounceTime = 1500;
     var input = document.getElementById('chat-form__textarea');
 

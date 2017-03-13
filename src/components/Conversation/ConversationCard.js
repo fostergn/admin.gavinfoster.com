@@ -9,7 +9,7 @@ const ConversationCard = ({conversation}) => {
   var author = (typeof messageObject !== "undefined") ? messageObject.author : 'loading author';
   var isConnected = (typeof messageObject !== "undefined") ? conversation.isConnected : '?';
   var conversationId = (typeof messageObject !== "undefined") ? messageObject.conversationId : 'loading';
-  var isClientTyping = (typeof messageObject !== "undefined") ? conversation.isClientTyping : false;
+  var clientIsTyping = (typeof messageObject !== "undefined") ? conversation.clientIsTyping : false;
   var name = (typeof messageObject !== "undefined") ? conversation.name : '?';
 
   const createdOnTime = new Date(conversation.createdOn).toString('yyyy-MM-dd');
@@ -19,10 +19,15 @@ const ConversationCard = ({conversation}) => {
     browserHistory.push(`/admin/conversations/${id}`);
   }
 
-  const messageClass = classNames({
+  const cardClass = classNames({
     'conversation__message': true,
-    'conversation__message--typing': isClientTyping,
+    'conversation__message--typing': clientIsTyping,
   })
+  if(conversation.name=="Timothy French"){
+  console.log('conversation card: ', cardClass);
+  console.log('conversation isClientTyping: ', clientIsTyping);
+  console.log('conversation conversation: ', conversation);
+  }
 
   const connectedIconClass = classNames({
     'fa': true,
@@ -47,7 +52,7 @@ const ConversationCard = ({conversation}) => {
         </div>
       </div>
       <div className="conversation__message-container">
-        <div className={messageClass}>{messageContent}</div>
+        <div className={cardClass}>{messageContent}</div>
       </div>
     </div>
   )

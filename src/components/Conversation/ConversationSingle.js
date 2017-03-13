@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import ConversationSidebar from './ConversationSidebarContainer';
 import ConversationSingleForm from './ConversationSingleForm';
-import ConversationSingleHeader from './ConversationSingleHeader';
 import ConversationSingleList from './ConversationSingleList';
 
 const ConversationSingle = ({params, conversations, messageInputText, sendMessage, updateText, updateIsTyping}) => {
@@ -12,7 +11,6 @@ const ConversationSingle = ({params, conversations, messageInputText, sendMessag
     <div className="main--sidebar">
       <ConversationSidebar conversationId={conversationId} />
       <div className="chat-message__container">
-        <ConversationSingleHeader />
         <ConversationSingleList params={params} conversations={conversations} />
         <ConversationSingleForm sendMessage={sendMessage} conversationId={conversationId} updateIsTyping={updateIsTyping} />
       </div>

@@ -9,6 +9,7 @@
   flex-flow: row wrap;
   overflow: scroll;
   height: calc(100vh - 60px);
+  align-content: flex-start;
 }
 
 .conversation__container {
@@ -17,6 +18,7 @@
   margin:.5rem;
 	cursor:pointer;
 	position:relative;
+  max-height:200px;
 }
 
 .conversation__container:before {
@@ -111,7 +113,7 @@ background-size:cover;
 
 .conversation__message img {
     max-width: 100px;
-    max-height: 100px;
+    max-height: 50px;
 }
 
 .conversation__message--client {

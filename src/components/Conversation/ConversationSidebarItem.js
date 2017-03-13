@@ -21,9 +21,13 @@ const ConversationSidebarItem = ({conversation, paramsConversationId}) => {
     "sidebar-conversation__item--active": conversation.conversationId === paramsConversationId,
   })
 
+  const imageClass= classNames({
+    'sidebar-conversation__image': true
+  })
+
   return (
       <li className={conversationClass} onClick={() => navigateToSingle(conversation.conversationId)}>
-        <div className="sidebar-conversation__image"></div>
+        <div className={imageClass}></div>
         <div className="sidebar-conversation__content">
           <div className="sidebar-conversation__header">
             <div className="sidebar-conversation__title">{conversation.name}</div>
